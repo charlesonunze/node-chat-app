@@ -4,6 +4,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const mongoose = require('mongoose');
 
+const {generateMsg} = require('./utils/generateMsg');
 const app = express();
 const port = process.env.PORT || 3000;
 const publicPath = path.join(__dirname, '../public');
@@ -18,30 +19,18 @@ io.on('connection', (socket) => {
   // socket.emit emits an event to a single connection
 
   // send welcome message to anyone that connects
-  socket.emit('newMessage', {
-    from: 'Admin',
-    text: 'Welcome to the chat app',
-    createdAt: new Date().getTime()
-  });
+  socket.emit('newMessage', generateMsg('Admin', 'welcome to the chat app'));
 
   // send message to previously connected users that a new user just joined
   socket
     .broadcast
-    .emit('newMessage', {
-      from: 'Admin',
-      text: 'New user joined',
-      createdAt: new Date().getTime()
-    });
+    .emit('newMessage', generateMsg('Admin', 'New user joned'));
 
   // listening for this event from the client
   socket.on('createMessage', (message) => {
     console.log(message);
     // io.emit emits an event to a every single connection
-    io.emit('newMessage', {
-      from: message.from,
-      text: message.text,
-      createdAt: new Date().getTime()
-    });
+    io.emit('newMessage', generateMsg(message.from, message.text));
   });
 
   socket.on('disconnect', () => {
