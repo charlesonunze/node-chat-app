@@ -9,5 +9,17 @@
   <body>
     Hello World!!!
   </body>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    const socket = io();
+
+    socket.on('connect', () => {
+      console.log(`connected from frontend...`);
+    });
+
+    socket.on('disconnect', () => {
+      console.log(`disconnected from frontend...`);
+    });
+  </script>
 
 </html>
