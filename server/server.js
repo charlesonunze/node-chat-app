@@ -14,16 +14,34 @@ app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
   console.log(`New user connected...`);
-  // creating an event that the client will listen to
+
+  // socket.emit emits an event to a single connection
+
+  // send welcome message to anyone that connects
   socket.emit('newMessage', {
-    from: 'someUser',
-    text: 'Recent message',
-    createdAt: 'now!'
+    from: 'Admin',
+    text: 'Welcome to the chat app',
+    createdAt: new Date().getTime()
   });
 
+  // send message to previously connected users that a new user just joined
+  socket
+    .broadcast
+    .emit('newMessage', {
+      from: 'Admin',
+      text: 'New user joined',
+      createdAt: new Date().getTime()
+    });
+
   // listening for this event from the client
-  socket.on('createMessage', (email) => {
-    console.log(email);
+  socket.on('createMessage', (message) => {
+    console.log(message);
+    // io.emit emits an event to a every single connection
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
   });
 
   socket.on('disconnect', () => {
