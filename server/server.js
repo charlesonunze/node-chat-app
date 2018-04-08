@@ -27,10 +27,12 @@ io.on('connection', (socket) => {
     .emit('newMessage', generateMsg('Admin', 'New user joned'));
 
   // listening for this event from the client
-  socket.on('createMessage', (message) => {
+  socket.on('createMessage', (message, callback) => {
     console.log(message);
     // io.emit emits an event to a every single connection
     io.emit('newMessage', generateMsg(message.from, message.text));
+
+    callback('Got it!');
   });
 
   socket.on('disconnect', () => {
