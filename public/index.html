@@ -8,36 +8,37 @@
     <link rel="stylesheet" href="/css/uikit.min.css" />
     <script src="/js/uikit.min.js"></script>
     <script src="/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
   </head>
 
   <body style="font-family: Varela Round">
-    <div class="uk-alert-success" uk-alert>
-      <a class="uk-alert-close" uk-close></a>
-      <p>Welcome to the chat app.</p>
+    <div class="uk-alert uk-alert-success">
+      <p>NodeChatApp</p>
     </div>
 
-    <div class="uk-container">
-      <ul id="listAdmin">
-      </ul>
-    </div>
     <br>
 
     <div class="uk-container">
-      <form id="message-form">
-
-        <div class="uk-margin">
-          <div class="uk-inline">
-            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-            <input class="uk-input" type="text" name="message" placeholder="Type in message...">
-          </div>
+      <form id="message-form" class="uk-grid uk-grid-small">
+        <div class="uk-width-1-2@s uk-inline">
+          <input class="uk-input" type="text" name="message" placeholder="Type in message...">
         </div>
 
-        <button type="submit" name="button" class="uk-button uk-button-primary">Send</button>
+        <div class="uk-width-1-6@s">
+          <button type="submit" name="button" class="uk-input uk-button uk-button-primary">Send</button>
+        </div>
+
+        <div class="uk-width-1-6@s">
+          <button type="submit" name="button" class="uk-input uk-button uk-button-primary"><span uk-icon="icon: location"></span></button>
+        </div>
+
       </form>
+
     </div>
 
     <br>
+
     <div class="uk-container">
       <ul id="listUser">
       </ul>

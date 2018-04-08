@@ -1,0 +1,22 @@
+.uk-alert-success.uk-alert {
+  text-align: center;
+  font-weight: bold;
+}
+
+ul#listUser {
+padding: 0;
+}
+
+li {
+/* background: #edfbf6; */
+    background: #32d296;
+    color: #fff;
+    list-style: none;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+button.uk-input.uk-button.uk-button-primary {
+margin-bottom: 10px;
+}

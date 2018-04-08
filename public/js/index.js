@@ -8,6 +8,9 @@ socket.on('disconnect', () => {
   console.log(`disconnected from frontend...`);
 });
 
+var clear = () => {
+  input.value = '';
+}
 var x = document.getElementById('message-form');
 
 var input = document.querySelector('input[name="message"]');
@@ -22,6 +25,7 @@ x.addEventListener('submit', (e) => {
     console.log(data);
   });
 
+  clear();
 });
 // listening for this event from the server
 socket.on('newMessage', (Message) => {
@@ -31,8 +35,9 @@ socket.on('newMessage', (Message) => {
   li.innerHTML = `${Message.from}: ${Message.text}`;
 
   if (Message.from === 'Admin') {
-    var listAdmin = document.getElementById('listAdmin');
-    listAdmin.appendChild(li);
+    UIkit.notification({message: `${Message.text}!`, status: 'primary', pos: 'bottom-center', timeout: 4000});
+  } else if (Message.text === '') {
+    clear();
   } else {
     var listUser = document.getElementById('listUser');
     listUser.appendChild(li);
