@@ -15,6 +15,7 @@ li {
   max-width: 400px;
   padding: 10px;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 a {
@@ -33,6 +34,8 @@ button.uk-input.uk-button.uk-button-primary {
   margin-bottom: 10px;
 }
 
-.uk-notification {
+.uk-notification div{
   text-align: center;
+  font-size: 15px;
+  font-weight: bold;
 }

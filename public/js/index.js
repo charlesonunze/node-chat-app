@@ -9,15 +9,15 @@ socket.on('disconnect', () => {
   console.log(`client disconnected...`);
 });
 
-var clear = () => {
+const clear = () => {
   input.value = '';
 }
 
-var form = document.getElementById('message-form');
+const form = document.getElementById('message-form');
 
-var locationButton = document.getElementById('location');
+const locationButton = document.getElementById('location');
 
-var input = document.querySelector('input[name="message"]');
+const input = document.querySelector('input[name="message"]');
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -34,7 +34,7 @@ form.addEventListener('submit', (e) => {
 
 locationButton.addEventListener('click', () => {
   if (!navigator.geolocation) 
-    return alert('geolocation not on!!!');
+    return UIkit.notification({message: '<span uk-icon=\'icon: warning\'></span> Please turn on your location', status: 'danger', pos: 'top-center', timeout: 4000});
   
   navigator
     .geolocation
@@ -52,7 +52,7 @@ locationButton.addEventListener('click', () => {
         console.log(data);
       });
     }, () => {
-      alert('Unable to fetch location');
+      UIkit.notification({message: '<span uk-icon=\'icon: warning\'></span> Unable to fetch location, please check your location settings', status: 'danger', pos: 'top-center', timeout: 4000});
     });
 
   // clear input field
@@ -68,7 +68,7 @@ socket.on('newMessage', (Message) => {
   li.innerHTML = `${Message.from}: ${Message.text}`;
 
   if (Message.from === 'Admin') {
-    UIkit.notification({message: `${Message.text}!`, status: 'success', pos: 'bottom-center', timeout: 4000});
+    UIkit.notification({message: `${Message.text} <span uk-icon=\'icon: happy\'></span><span uk-icon=\'icon: happy\'></span><span uk-icon=\'icon: happy\'></span>`, status: 'success', pos: 'bottom-center', timeout: 4000});
   } else if (Message.text === '') {
     clear();
   } else {

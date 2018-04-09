@@ -17,13 +17,13 @@ io.on('connection', (socket) => {
   console.log(`New user connected...`);
 
   socket.on('disconnect', () => {
-    console.log(`client was disconnected...`);
+    console.log(`User disconnected...`);
   });
 
   // socket.emit emits an event to a single connection
 
   // send welcome message to anyone that connects
-  socket.emit('newMessage', generateMsg('Admin', 'Welcome to the chat app!'));
+  socket.emit('newMessage', generateMsg('Admin', 'Welcome to the NodeChatApp!'));
 
   // send message to previously connected users that a new user just joined
   socket
