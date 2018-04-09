@@ -19,32 +19,42 @@
 
     <br>
 
-    <div class="uk-container">
-      <form id="message-form" class="uk-grid uk-grid-small">
-        <div class="uk-width-1-2@s uk-inline">
-          <input class="uk-input" type="text" name="message" placeholder="Type in message...">
-        </div>
-
-        <div class="uk-width-1-6@s">
-          <button type="submit" name="button" class="uk-input uk-button uk-button-primary">Send</button>
-        </div>
-
-        <div class="uk-width-1-6@s">
-          <button type="submit" name="button" class="uk-input uk-button uk-button-primary"><span uk-icon="icon: location"></span></button>
-        </div>
-
-      </form>
+    <div class="">
 
     </div>
 
-    <br>
-
     <div class="uk-container">
-      <ul id="listUser">
-      </ul>
+      <div class="">
+        <form id="message-form" class="uk-grid uk-grid-small">
+          <div class="uk-width-1-2@s uk-inline">
+            <input class="uk-input input" type="text" name="message" placeholder="Type in message...">
+          </div>
+
+          <div class="uk-width-1-6@s">
+            <button type="submit" name="button" class="uk-input uk-button uk-button-primary">Send</button>
+          </div>
+
+          <div class="uk-width-1-6@s">
+            <button id="location" type="button" name="button" class="uk-input uk-button uk-button-primary"><span uk-icon="icon: location"></span></button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <hr class="uk-divider-icon">
+      <div class="uk-alert uk-alert-success">
+        <p>Messages</p>
+      </div>
+
+      <div class="uk-container">
+        <ul id="listUser">
+        </ul>
+      </div>
     </div>
 
   </body>
+
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="/js/index.js">
   </script>

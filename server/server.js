@@ -4,7 +4,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const mongoose = require('mongoose');
 
-const {generateMsg} = require('./utils/generateMsg');
+const {generateMsg, generateLocationMsg} = require('./utils/generateMsg');
 const app = express();
 const port = process.env.PORT || 3000;
 const publicPath = path.join(__dirname, '../public');
@@ -16,28 +16,36 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log(`New user connected...`);
 
+  socket.on('disconnect', () => {
+    console.log(`client was disconnected...`);
+  });
+
   // socket.emit emits an event to a single connection
 
   // send welcome message to anyone that connects
-  socket.emit('newMessage', generateMsg('Admin', 'welcome to the chat app'));
+  socket.emit('newMessage', generateMsg('Admin', 'Welcome to the chat app!'));
 
   // send message to previously connected users that a new user just joined
   socket
     .broadcast
     .emit('newMessage', generateMsg('Admin', 'New user joned'));
 
-  // listening for this event from the client
+  // listening for a 'createMessage' event from the client
   socket.on('createMessage', (message, callback) => {
     console.log(message);
     // io.emit emits an event to a every single connection
     io.emit('newMessage', generateMsg(message.from, message.text));
 
-    callback('Got it!');
+    callback('Got it!'); //optional
   });
 
-  socket.on('disconnect', () => {
-    console.log(`client was disconnected...`);
+  // listening for a 'locationMessage' event from the client
+  socket.on('locationMessage', (coords) => {
+    console.log(coords);
+    // io.emit emits an event to a every single connection
+    io.emit('newLocationMessage', generateLocationMsg(coords.from, coords.lat, coords.lng));
   });
+
 });
 
 app.get('/', (req, res) => {

@@ -4,19 +4,35 @@
 }
 
 ul#listUser {
-padding: 0;
+  padding: 0;
 }
 
 li {
-/* background: #edfbf6; */
-    background: #32d296;
-    color: #fff;
-    list-style: none;
-    max-width: 400px;
-    padding: 10px;
-    margin-bottom: 5px;
+  /* background: #edfbf6; */
+  background: #32d296;
+  color: #fff;
+  list-style: none;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+a {
+  display: block;
+  background: #000;
+  color: #fff;
+  list-style: none;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: bold;
 }
 
 button.uk-input.uk-button.uk-button-primary {
-margin-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.uk-notification {
+  text-align: center;
 }
